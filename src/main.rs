@@ -13,11 +13,11 @@ fn main() {
     for stream in listener.incoming() {
         let mut stream = stream.unwrap();
 
-        stream.write(status.as_bytes()).unwrap();
-        stream.write(header.as_bytes()).unwrap();
+        stream.write_all(status.as_bytes()).unwrap();
+        stream.write_all(header.as_bytes()).unwrap();
 
         loop {
-            stream.write(response.as_bytes()).unwrap();
+            stream.write_all(response.as_bytes()).unwrap();
 
             // Sleep for a while every loop
             thread::sleep(one_sec);
